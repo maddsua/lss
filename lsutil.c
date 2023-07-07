@@ -79,14 +79,19 @@ int main(int argc, char** argv) {
 				if (data.dwFileAttributes &= FILE_ATTRIBUTE_DIRECTORY) {
 					
 					SetConsoleTextAttribute(hConsole, 10);
-					wprintf(L"[%s]\n",  data.cFileName);
+					wprintf(L"%s\n",  data.cFileName);
 					SetConsoleTextAttribute(hConsole, 7);
 				} else {
 					wprintf(L"%s\n",  data.cFileName);
 				}
 				
 				if (saveToFile) {
-					fwprintf(listFile, L"%s\n", data.cFileName);
+
+					if (data.dwFileAttributes &= FILE_ATTRIBUTE_DIRECTORY) {
+						fwprintf(listFile, L"[dir] %s\n", data.cFileName);
+					} else {
+						fwprintf(listFile, L"%s\n", data.cFileName);
+					}
 				}
 			}
 		}

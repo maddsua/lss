@@ -1,4 +1,3 @@
-CC		= gcc
 TARGET	= lss.exe
 SOURCE	= lsutil.c
 
